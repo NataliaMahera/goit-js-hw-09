@@ -1,11 +1,11 @@
 const form = document.querySelector('.form');
 
-form.addEventListener('submit', onPromiseCreate);
+form.addEventListener('submit', onSubmit);
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
-    console.log(shouldResolve);
+    // console.log(shouldResolve);
 
     setInterval(() => {
       if (shouldResolve) {
@@ -17,11 +17,11 @@ function createPromise(position, delay) {
       }
     }, delay);
 
-    console.log(promise);
+    // console.log(promise);
   });
 }
 
-function onPromiseCreate(evt) {
+function onSubmit(evt) {
   evt.preventDefault();
 
   const { delay, step, amount } = evt.currentTarget.elements;
@@ -30,7 +30,7 @@ function onPromiseCreate(evt) {
   let inputStep = Number(step.value);
   let inputAmount = Number(amount.value);
 
-  for (let i = 0; i < inputAmount; i++) {
+  for (let i = 1; i <= inputAmount; i += 1) {
     inputDelay += inputStep;
 
     createPromise(i, inputDelay)
@@ -40,6 +40,6 @@ function onPromiseCreate(evt) {
       .catch(({ position, delay }) => {
         console.log(`❌ Rejected promise ${position} in ${delay}ms`);
       });
-    e.currentTarget.reset();
+    evt.currentTarget.reset();
   }
 }
