@@ -38,6 +38,7 @@ const onStartBtn = () => {
   intervalId = setInterval(() => {
     currentDate = Date.now();
     const deltaTime = selectedDate - currentDate;
+
     if (deltaTime <= 0) {
       return clearInterval(intervalId);
     }
