@@ -28,6 +28,10 @@ const options = {
     } else {
       startBtn.disabled = false;
       selectedDate = selectedDates[0].getTime();
+      Report.success(
+        'Notiflix Success',
+        'Okay, press the start button to start counting timer'
+      );
     }
   },
 };
