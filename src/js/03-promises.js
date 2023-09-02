@@ -29,17 +29,14 @@ function onSubmit(evt) {
   let inputStep = Number(step.value);
   let inputAmount = Number(amount.value);
 
-  for (let i = 1; i <= inputAmount; i += 1) {
-    createPromise(i, inputDelay)
+  for (let i = 0; i <= inputAmount; i += 1) {
+    const newDelay = inputDelay + inputStep * i;
+    createPromise(i + 1, newDelay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
-        // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
       });
-
-    inputDelay += inputStep;
   }
 }
